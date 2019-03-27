@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>java面试题及答案 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java面试题及答案1）Java 中能创建 volatile 数组吗？ 能，Java 中可以创建 volatile 类型数组，不过只是一个指向数组的引用，而不是整个数组。我的意思是，如果改变引用指向的数组，将会受到 volatile 的保护，但是如果多个线程同时改变数组的元素，volatile 标示符就不能起到之前的保护作用了。 2）volatile 能使得一个非原子操作变成原子操作吗？ 一个典型">
+  <meta name="description" content="1）Java 中能创建 volatile 数组吗？ 能，Java 中可以创建 volatile 类型数组，不过只是一个指向数组的引用，而不是整个数组。我的意思是，如果改变引用指向的数组，将会受到 volatile 的保护，但是如果多个线程同时改变数组的元素，volatile 标示符就不能起到之前的保护作用了。 2）volatile 能使得一个非原子操作变成原子操作吗？ 一个典型的例子是在类中有一个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2019/03/27/java/index.html">
+<meta property="og:title" content="java面试题及答案">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/java-interview/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Java面试题及答案1）Java 中能创建 volatile 数组吗？ 能，Java 中可以创建 volatile 类型数组，不过只是一个指向数组的引用，而不是整个数组。我的意思是，如果改变引用指向的数组，将会受到 volatile 的保护，但是如果多个线程同时改变数组的元素，volatile 标示符就不能起到之前的保护作用了。 2）volatile 能使得一个非原子操作变成原子操作吗？ 一个典型">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="1）Java 中能创建 volatile 数组吗？ 能，Java 中可以创建 volatile 类型数组，不过只是一个指向数组的引用，而不是整个数组。我的意思是，如果改变引用指向的数组，将会受到 volatile 的保护，但是如果多个线程同时改变数组的元素，volatile 标示符就不能起到之前的保护作用了。 2）volatile 能使得一个非原子操作变成原子操作吗？ 一个典型的例子是在类中有一个">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190327180701945.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5ZjI2OTU0MjE2OTU=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190327181030879.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5ZjI2OTU0MjE2OTU=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190327181156672.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5ZjI2OTU0MjE2OTU=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-03-27T10:29:47.180Z">
+<meta property="og:updated_time" content="2019-03-27T11:25:21.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="Java面试题及答案1）Java 中能创建 volatile 数组吗？ 能，Java 中可以创建 volatile 类型数组，不过只是一个指向数组的引用，而不是整个数组。我的意思是，如果改变引用指向的数组，将会受到 volatile 的保护，但是如果多个线程同时改变数组的元素，volatile 标示符就不能起到之前的保护作用了。 2）volatile 能使得一个非原子操作变成原子操作吗？ 一个典型">
+<meta name="twitter:title" content="java面试题及答案">
+<meta name="twitter:description" content="1）Java 中能创建 volatile 数组吗？ 能，Java 中可以创建 volatile 类型数组，不过只是一个指向数组的引用，而不是整个数组。我的意思是，如果改变引用指向的数组，将会受到 volatile 的保护，但是如果多个线程同时改变数组的元素，volatile 标示符就不能起到之前的保护作用了。 2）volatile 能使得一个非原子操作变成原子操作吗？ 一个典型的例子是在类中有一个">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190327180701945.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5ZjI2OTU0MjE2OTU=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -158,12 +158,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-interview" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java面试题及答案
+    </h1>
+  
+
+        
+        <a href="/2019/03/27/java-interview/" class="archive-article-date">
+  	<time datetime="2019-03-27T11:10:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Java面试题及答案"><a href="#Java面试题及答案" class="headerlink" title="Java面试题及答案"></a>Java面试题及答案</h2><p><strong>1）Java 中能创建 volatile 数组吗？</strong></p>
+        <p><strong>1）Java 中能创建 volatile 数组吗？</strong></p>
 <p>能，Java 中可以创建 volatile 类型数组，不过只是一个指向数组的引用，而不是整个数组。我的意思是，如果改变引用指向的数组，将会受到 volatile 的保护，但是如果多个线程同时改变数组的元素，volatile 标示符就不能起到之前的保护作用了。</p>
 <p><strong>2）volatile 能使得一个非原子操作变成原子操作吗？</strong></p>
 <p>一个典型的例子是在类中有一个 long 类型的成员变量。如果你知道该成员变量会被多个线程访问，如计数器、价格等，你最好是将其设置为 volatile。为什么？因为 Java 中读取 long 类型变量不是原子的，需要分成两步，如果一个线程正在修改该 long 变量的值，另一个线程可能只能看到该值的一半（前 32 位）。但是对一个 volatile 型的 long 或 double 变量的读写是原子。</p>
@@ -501,7 +516,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/27/java/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/27/java-interview/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -513,20 +528,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2019/03/27/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          interview for java
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
