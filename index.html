@@ -152,6 +152,121 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-database" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/database/">数据库知识点总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/27/database/" class="archive-article-date">
+  	<time datetime="2019-03-27T11:44:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关系数据库的范式：</strong></p>
+<p>第一范式:数据库表中的所有字段值都是不可分解的原子值。</p>
+<p>第二范式:确保数据库表中的每一列都和主键相关，而不能只和主键的某一部分相关（主要针对联合主键），也就是说在一个数据库表中，一个表只能保存一种数据。</p>
+<p>第三范式:确保数据表中每一列数据都和主键直接相关，而不能间接相关。（一般数据库满足）</p>
+<p>数据完整性分为4类：实体完整性（设计时指定主键，并且主键不能为空值），域完整性（列满足特定的数据类型或者约束，如取值范围，精度等），参照完整性（两个表的主键和外键的数据对应一致），用户定义完整性。</p>
+<p><strong>insert（向数据库表中插入数据）</strong></p>
+<p>用values子句为一行指定数据值:insert into 地址表(编号，描述）values (101,’市区’)</p>
+<p>用select子句为一行或者多行指定数据值</p>
+<p>insert into 地址表（编号，描述） select 地址号，说明 from 客户表</p>
+<p><strong>update(更新数据）</strong></p>
+<p>将Medicine数据库中的药品的价格进行调整，幅度为原来的90%：update Medicine set showprice=showprice*0.9</p>
+<p>在Medicine数据库中将使用急速快递物流的订单修改为货到付款，且无物流费用：update SaleOrderSummary</p>
+<p>set Freight=0,RayMain=’货到付款’ where FreighterName=’极速快递’</p>
+<p><strong>top （更新指定更新的行数或者行数的百分比）</strong>：对MedicinieDetail表的前5条条药品的价格增加：update top(5) MedicineDetail set showprice=showprice+5</p>
+<p>对MrdicineDetail的前30%的药品价格增加5：update top(30) percent MedicineDetail set showprice=showprice+5</p>
+<p><strong>delete（删除数据库表的单行数据，多行数据或者所有数据）</strong>：删除ClientInfo表中职称为”业务代表”的所有客户信息：</p>
+<p>delete ClientInfo Where Compost=‘业务代表’</p>
+<p>删除ClientInfo表中的所有数据：delete from ClientInfo</p>
+<p><strong>列表条件：in：</strong>查询MedicineInfo表中查询出分类编号为31,80或者91的药品信息，查询结果包含编号，药品名称和所属分类编号</p>
+<p>Select MedicineId ‘编号’,MedicineName ‘药品名称’,TypeId ‘所属分类编号’ from MedicineInfo where TypeId IN(31,80,91)</p>
+<p>要从药品信息表MedicineDetail中统计每个厂家生产的药品的数量，就可以使用group by子句对ProviderName列进行分组，然后统计结果集的个数</p>
+<p>select ProviderName ‘上产厂家’, count(*) ‘药品数量’ from MedicineDetail group by ProviderName</p>
+<p>要从药品信息表中获取每个厂家长产药品的最高价格：select ProviderName ‘生产厂家’, Max(showprice) ‘价格’ from MedicineDetail group by ProviderName</p>
+<p>筛选药品信息表中MedicineDetail中数量多于10个的药品生产厂家以及的该厂家的药品数量就可以使用having子句进行过滤</p>
+<p>select ProviderName ‘生产厂家’, count(<em>) ‘药品数量’ from MedicineDetail group by ProivderName Having count (</em>) &gt;10</p>
+<p><strong>内连接：</strong>将两个表中满足条件的记录组合在一起。</p>
+<p><strong>外连接：</strong>返回所有匹配的行和不匹配的行。</p>
+<p>外连接分为左外链接：left outer join LEFT返回所有匹配的行并从关键字join左边的表中返回所有不匹配的行，</p>
+<p>right outer join RIGHT返回所有匹配的行并从关键字join邮编的表中返回所有不匹配的行。</p>
+<p>例如：左外链接：select 列名列表 from 表名1 LEFT [OUTER] join 表名2 on 表名1.列名=表名2.列名</p>
+<p><strong>使用子查询</strong></p>
+<p>1.使用比较运算符 any和some表示相比较的两个数据集中,至少有一个值的比较为真，满足搜索条件，若子查询结果集为空，则不满足搜索条件。</p>
+<p>all与结果集中所有的值比较都为真， 才能满足搜索条件。</p>
+<p>在Personnel_Sys数据库中查询包含女性员工的部门编号和部门名称。</p>
+<p>select did ‘编号’ , dname ‘部门名称’</p>
+<p>from Departments where did=ANY(select did from Employees where sex=’女’)</p>
+<p>2.使用in关键字</p>
+<p>in关键字可以判断指定的值是否包含在另外一个查询结果集中。</p>
+<p>select e.eid ‘编号’,e.ename ‘姓名’,e.sex ‘性别’,e.hometown ‘籍贯’,c.salary2 ‘调整后工资’ from salary_changes c inner join employees e on c.eid=e.eid where e.eid in(select eid from employees where married=’已婚’)</p>
+<p>3.使用exists关键字</p>
+<p>exists关键字的作用是在where子句中测试子查询返回的数据行是否存在，不会返回任何行只会产生逻辑值true或者false</p>
+<p>在Personnel_Sys数据库中如果存在一个部门没有员工的情况，那么就显示所有部门的信息</p>
+<p>select * from Departments where exists(select e.eid ‘编号’,e.ename ‘姓名’,d.dname ‘部门名称’ from employees e right outer join departments d on e.eid=d.did where e.eid is null)</p>
+<p>4.单值查询</p>
+<p>子查询的查询结果就返回一个值：在Personnel_sys数据库中输出编号为100401员工所在部门的编号，部门名称以及部门人数</p>
+<p>select * from departments where did=(select did from employees where eid=100401)</p>
+<p>5.嵌套子查询</p>
+<p>在查询语句中包含一个或者多个子查询：查询并显示调整过薪资的员工的信息，包含员工编号，姓名，性别和籍贯</p>
+<p>select eid ‘编号’,ename ‘姓名’,sex ‘性别’,hometown ‘籍贯’ from employees where eid in(select eid from salary_changes)</p>
+<p>使用create view语句创建一个名为V_employee_department的视图，要求视图可以查询每个员工的编号，姓名，职称以及所在部门名称：create view V_employee_department</p>
+<p>(</p>
+<p>编号，姓名，职称，所在部门)</p>
+<p>as select e.eid,e.ename,e.post,d.dname from employees e inner join departments d on e.eid=d.did</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/27/database/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java-interview" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
