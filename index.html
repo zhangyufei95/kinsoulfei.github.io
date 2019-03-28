@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>kinsoulfei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="kinsoulfei">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="kinsoulfei">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="kinsoulfei">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="kinsoulfei" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -46,8 +46,10 @@
 			<img src class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">KinSoulFei</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">kinsoulfei&#39;s personal blog</p>
 		
 
 		<nav class="header-menu">
@@ -104,8 +106,10 @@
 				<img src class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">KinSoulFei</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>kinsoulfei&#39;s personal blog<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -151,6 +155,69 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-mlp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/28/mlp/">多层感知机拟合</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/28/mlp/" class="archive-article-date">
+  	<time datetime="2019-03-28T00:14:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">from pandas import set_option</span><br><span class="line">from pandas import read_csv</span><br><span class="line">from matplotlib import pyplot</span><br><span class="line">from sklearn.preprocessing import OneHotEncoder</span><br><span class="line">from sklearn.feature_extraction import DictVectorizer</span><br><span class="line">from sklearn.preprocessing import LabelEncoder</span><br><span class="line">from sklearn.cross_validation import StratifiedKFold</span><br><span class="line">from sklearn.preprocessing import StandardScaler</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line">from sklearn.metrics import mean_squared_error,explained_variance_score</span><br><span class="line">from pandas.plotting import scatter_matrix</span><br><span class="line">from sklearn.model_selection import KFold</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">from sklearn.metrics import classification_report</span><br><span class="line">from sklearn.metrics import confusion_matrix</span><br><span class="line">from sklearn.metrics import accuracy_score</span><br><span class="line">from sklearn.pipeline import Pipeline</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">from sklearn.neighbors import KNeighborsClassifier</span><br><span class="line">from sklearn.tree import DecisionTreeClassifier</span><br><span class="line">from sklearn.discriminant_analysis import LinearDiscriminantAnalysis</span><br><span class="line">from sklearn.naive_bayes import GaussianNB</span><br><span class="line">from sklearn.ensemble import AdaBoostClassifier</span><br><span class="line">from sklearn.svm import SVC</span><br><span class="line">from sklearn.svm import SVR</span><br><span class="line">from sklearn.ensemble import GradientBoostingClassifier</span><br><span class="line">from sklearn.ensemble import RandomForestClassifier</span><br><span class="line">from sklearn.ensemble import RandomForestRegressor</span><br><span class="line">from sklearn.ensemble import ExtraTreesClassifier</span><br><span class="line">import sklearn.naive_bayes</span><br><span class="line">from sklearn.neural_network import MLPClassifier</span><br><span class="line">from sklearn.neural_network import MLPRegressor</span><br><span class="line">import graphviz</span><br><span class="line">from sklearn.tree import export_graphviz</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from matplotlib.colors import ListedColormap</span><br><span class="line">from sklearn import tree,datasets</span><br><span class="line">from sklearn.tree import DecisionTreeRegressor</span><br><span class="line">import math</span><br><span class="line">from sklearn.decomposition import PCA</span><br><span class="line">from sklearn.pipeline import Pipeline</span><br><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">from sklearn.pipeline import Pipeline</span><br><span class="line">from sklearn.pipeline import make_pipeline</span><br><span class="line">from sklearn.feature_selection import SelectFromModel</span><br><span class="line">#filename1=&apos;studentmat_dummies_numeric.csv&apos;</span><br><span class="line">filename1=&apos;studentmat_dummies_binary.csv&apos;</span><br><span class="line">filename2=&apos;studentmat_dummies_five.csv&apos;</span><br><span class="line">filename3=&apos;studentmat_dummies_numeric.csv&apos;</span><br><span class="line">filename4=&apos;studentpor_dummies_binary.csv&apos;</span><br><span class="line">filename5=&apos;studentpor_dummies_five.csv&apos;</span><br><span class="line">filename6=&apos;studentpor_dummies_numeric.csv&apos;</span><br><span class="line">data=pd.read_csv(filename5)</span><br><span class="line">X,y=data.iloc[:,:56].values.astype(float),data.iloc[:,58].values.astype(float)</span><br><span class="line">feature_names=[&apos;age&apos;, &apos;Medu&apos;, &apos;Fedu&apos;, &apos;traveltime&apos;, &apos;studytime&apos;, &apos;failures&apos;, &apos;famrel&apos;,</span><br><span class="line">       &apos;freetime&apos;, &apos;goout&apos;, &apos;Dalc&apos;, &apos;Walc&apos;, &apos;health&apos;, &apos;absences&apos;,  &apos;school_GP&apos;, &apos;school_MS&apos;, &apos;sex_F&apos;, &apos;sex_M&apos;, &apos;address_R&apos;,</span><br><span class="line">       &apos;address_U&apos;, &apos;famsize_GT3&apos;, &apos;famsize_LE3&apos;, &apos;Pstatus_A&apos;, &apos;Pstatus_T&apos;,</span><br><span class="line">       &apos;Mjob_at_home&apos;, &apos;Mjob_health&apos;, &apos;Mjob_other&apos;, &apos;Mjob_services&apos;,</span><br><span class="line">       &apos;Mjob_teacher&apos;, &apos;Fjob_at_home&apos;, &apos;Fjob_health&apos;, &apos;Fjob_other&apos;,</span><br><span class="line">       &apos;Fjob_services&apos;, &apos;Fjob_teacher&apos;, &apos;reason_course&apos;, &apos;reason_home&apos;,</span><br><span class="line">       &apos;reason_other&apos;, &apos;reason_reputation&apos;, &apos;guardian_father&apos;,</span><br><span class="line">       &apos;guardian_mother&apos;, &apos;guardian_other&apos;, &apos;schoolsup_no&apos;, &apos;schoolsup_yes&apos;,</span><br><span class="line">       &apos;famsup_no&apos;, &apos;famsup_yes&apos;, &apos;paid_no&apos;, &apos;paid_yes&apos;, &apos;activities_no&apos;,</span><br><span class="line">       &apos;activities_yes&apos;, &apos;nursery_no&apos;, &apos;nursery_yes&apos;, &apos;higher_no&apos;,</span><br><span class="line">       &apos;higher_yes&apos;, &apos;internet_no&apos;, &apos;internet_yes&apos;, &apos;romantic_no&apos;,</span><br><span class="line">       &apos;romantic_yes&apos;]</span><br><span class="line">num_folds=10</span><br><span class="line">seed=38</span><br><span class="line">test_size=0.2</span><br><span class="line">X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=test_size,random_state=seed)</span><br><span class="line">scoring=&apos;accuracy&apos;</span><br><span class="line">params=[&#123;&apos;reg&apos;:[MLPClassifier(solver=&apos;lbfgs&apos;,random_state=seed)],</span><br><span class="line">         &apos;scaler&apos;:[StandardScaler(),None],</span><br><span class="line">         &apos;reg__hidden_layer_sizes&apos;:[(50,),(100,),(100,100)]&#125;,</span><br><span class="line">        &#123;&apos;reg&apos;:[RandomForestRegressor(random_state=seed)],</span><br><span class="line">         &apos;scaler&apos;:[None],</span><br><span class="line">         &apos;reg__n_estimators&apos;:[10,50,100]&#125;]</span><br><span class="line">pipe=Pipeline([(&apos;scaler&apos;,StandardScaler()),(&apos;reg&apos;,MLPClassifier())])</span><br><span class="line">grid_search=GridSearchCV(pipe, param_grid=params, cv=num_folds)</span><br><span class="line">grid_search.fit(X_train, y_train)</span><br><span class="line">clf=grid_search.best_estimator_</span><br><span class="line">clf.fit(X_train,y_train)</span><br><span class="line">print(&apos;交叉验证最高得分: &#123;:.2f&#125;&apos;.format(grid_search.best_score_))</span><br><span class="line">print(&apos;模型最优参数: &#123;&#125;&apos;.format(grid_search.best_params_))</span><br><span class="line">print(&apos;测试集得分: &#123;&#125;&apos;.format(clf.score(X_test,y_test)))</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/28/mlp/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-database" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -598,7 +665,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2019 KinSoulFei
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
